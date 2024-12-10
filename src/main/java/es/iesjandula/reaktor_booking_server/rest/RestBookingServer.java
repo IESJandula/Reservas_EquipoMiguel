@@ -145,13 +145,7 @@ public class RestBookingServer
 	@RequestMapping(method = RequestMethod.POST, value = "/reserva")
 	public ResponseEntity<?> crearReserva(@RequestBody Reserva nuevaReserva) {
 	    try
-	    {
-	    	List<String> aulasTicSinReserva = this.reservaRepository.sinReservasAulaTic(nuevaReserva.getDiaSemana().getDia(), nuevaReserva.getTramoHorario().getTramoHorarioId().getHoraInicio(), nuevaReserva.getTramoHorario().getTramoHorarioId().getHoraFin());
-	    	
-	    	String message = "Existen Aulas Tic sin reservas: " + aulasTicSinReserva;
-	    	
-	    	log.info(message);
-	    	
+	    {	    	
 	        // Validar que el recurso existe
 	        Optional<Recurso> recurso = recursoRepository.findById(nuevaReserva.getRecurso().getNombre_recurso());
 	        if (!recurso.isPresent()) {
